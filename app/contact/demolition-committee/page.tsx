@@ -11,6 +11,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 
 export default function DemolitionCommitteePage() {
+  const [language, setLanguage] = useState<"en" | "mr">("en")
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -43,7 +44,7 @@ export default function DemolitionCommitteePage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      <Header language={language} setLanguage={setLanguage}/>
 
       <main className="container mx-auto px-4 py-12">
         <div className="max-w-6xl mx-auto">
@@ -242,8 +243,6 @@ export default function DemolitionCommitteePage() {
           </div>
         </div>
       </main>
-
-      <Footer />
     </div>
   )
 }

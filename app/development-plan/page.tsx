@@ -8,6 +8,7 @@ import Footer from "@/components/footer"
 
 export default function DevelopmentPlanPage() {
   const [searchTerm, setSearchTerm] = useState("")
+  const [language, setLanguage] = useState<"en" | "mr">("en")
 
   const developmentPlanLinks = [
     {
@@ -29,7 +30,7 @@ export default function DevelopmentPlanPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header />
+      <Header language={language} setLanguage={setLanguage}/>
 
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
         {/* Page Header */}
@@ -330,8 +331,6 @@ export default function DevelopmentPlanPage() {
           </Card>
         </div>
       </main>
-
-      <Footer />
     </div>
   )
 }

@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
 
 export default function FeedbackSuggestionPage() {
+  const [language, setLanguage] = useState<"en" | "mr">("en")
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -43,7 +44,7 @@ export default function FeedbackSuggestionPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      <Header language={language} setLanguage={setLanguage}/>
 
       <main className="container mx-auto px-4 py-8">
         <div className="max-w-2xl mx-auto">
@@ -117,8 +118,6 @@ export default function FeedbackSuggestionPage() {
           </Card>
         </div>
       </main>
-
-      <Footer />
     </div>
   )
 }

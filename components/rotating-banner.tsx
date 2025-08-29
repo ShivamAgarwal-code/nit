@@ -3,6 +3,10 @@
 import type React from "react"
 import { useEffect, useState } from "react"
 
+interface RotatingBannerProps {
+  language: "en" | "mr"
+}
+
 export function RotatingBanner() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isPaused, setIsPaused] = useState(false)
@@ -19,8 +23,18 @@ export function RotatingBanner() {
   }, [])
 
   const announcements = [
-    "Welcome to Nagpur Improvement Trust || Redevelopment of Gokulpeth Market at Gokulpeth Precinct CTS No.1318, Mz.Gadga,Nagpur. || नागपूर सुधार प्रन्यासच्या घरकुल योजने अंतर्गत पूर्व / पश्चिम/ उत्तर/ दक्षिण विभागाअंतर्गत निवासी सदनिकांची जाहीर सोडत. अधिक माहिती आणि अर्ज करण्यासाठी येथे क्लिक करा ||",
-    "Right To Public Service act Maharashtra 2015 || महाराष्ट्र लोकसेवा हक्क अधिनियम, २०१५ || Government Gazette( Right to Public Service act,2015) || Click here Quotation Notice for Redevelopment of Deekshabhoomi Premised at Nagpur || Revised calendar for NMRDA Lottery 2021 || Click Here to get Application form for the post of Legal Advisor in NIT / NMRDA || PMAY - Last date for Computer Application till 6.00 PM on 15th July 2019. Click Here to View Corrigendum VI || Date of lottery and venue will be communicated by SMS and Press Note || PMAY - Last Date for Registration ends at 5.00 PM and Online Application ends at 11.59 PM on 29th June 2019 || First Draw for PMAY awaited shortly || Click Here for Tenders / Quotation Notices || जाहीर सूचना - Un-Authorized Construction Notices - MRTP 53 Act (West Division),NMRDA || Functioning of Tribunal, constituted under section 60,61 and 62 of NIT Act 1936 has started from 09th August 2018.Click Here for more Information || Click Here to View Nagpur Municipal Corporation Town Planning Scheme Document || Click Here to Download Regularisation form of Metro Region Like Gunthewari|| Click Here to Download AB forms of Metro Region Building and Layout || Click Here to view Terms and Condition of Samaj Bhavan || Click Here to Download Application form for Registration of Technical Person||Click Here to Download Metro Region Layout Form And Building Form",
+    {
+      en: "Welcome to Nagpur Improvement Trust || Redevelopment of Gokulpeth Market at Gokulpeth Precinct CTS No.1318, Mz.Gadga,Nagpur. || Housing scheme under NIT for East / West / North / South division residential flats public lottery. Click here for more information and application.",
+      mr: "नागपूर सुधार न्यासात आपले स्वागत || गोकुळपेठ प्रिसिंक्ट CTS क्र.१३१८, मौजे गडगा, नागपूर येथे गोकुळपेठ मार्केटचा पुनर्विकास || NIT च्या घरकुल योजनेअंतर्गत पूर्व/पश्चिम/उत्तर/दक्षिण विभागाअंतर्गत निवासी फ्लॅटची सार्वजनिक सोडत. अधिक माहिती आणि अर्जासाठी येथे क्लिक करा."
+    },
+    {
+      en: "Right To Public Service act Maharashtra 2015 || Government Gazette (Right to Public Service act, 2015) || Quotation Notice for Redevelopment of Deekshabhoomi Premises at Nagpur || Revised calendar for NMRDA Lottery 2021 || Application form for Legal Advisor in NIT / NMRDA.",
+      mr: "महाराष्ट्र लोकसेवा हक्क अधिनियम २०१५ || सरकारी राजपत्र (लोकसेवा हक्क अधिनियम, २०१५) || नागपूर येथे दीक्षाभूमी परिसराच्या पुनर्विकासासाठी कोटेशन नोटिस || NMRDA सोडत २०२१ साठी सुधारित कॅलेंडर || NIT/NMRDA मधील कायदा सल्लागार पदासाठी अर्ज फॉर्म."
+    },
+    {
+      en: "PMAY - Applications processed with enhanced digital features || Date of lottery and venue will be communicated by SMS and Press Note || PMAY - Registration ends at 5.00 PM and Online Application ends at 11.59 PM || First Draw for PMAY awaited shortly || Tenders/Quotation Notices available.",
+      mr: "PMAY - सुधारित डिजिटल वैशिष्ट्यांसह अर्जाची प्रक्रिया || सोडताची तारीख आणि ठिकाण SMS आणि प्रेस नोटद्वारे कळवले जाईल || PMAY - नोंदणी संध्याकाळी ५.०० वाजता संपते आणि ऑनलाइन अर्ज रात्री ११.५९ वाजता संपतो || PMAY साठी पहिला ड्रॉ लवकरच अपेक्षित || निविदा/कोटेशन नोटिसेस उपलब्ध."
+    }
   ]
 
   useEffect(() => {
@@ -46,11 +60,15 @@ export function RotatingBanner() {
     }
   }
 
+  const currentAnnouncement = language === "en" 
+    ? announcements[currentIndex].en 
+    : announcements[currentIndex].mr
+
   return (
     <div
       className="bg-gradient-to-r from-background to-muted/30 text-foreground py-2 sm:py-4 overflow-hidden border-b border-border shadow-sm relative"
       role="banner"
-      aria-label="Announcements"
+      aria-label={language === "en" ? "Announcements" : "घोषणा"}
       {...(!isMobile && {
         onMouseEnter: () => setIsPaused(true),
         onMouseLeave: () => setIsPaused(false),
@@ -63,52 +81,34 @@ export function RotatingBanner() {
           <div className="bg-gradient-to-r from-primary to-secondary text-primary-foreground px-2 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold flex-shrink-0 shadow-lg border border-primary/20 backdrop-blur-sm">
             <span className="flex items-center gap-1 sm:gap-2">
               <div className="w-1 h-1 bg-primary-foreground rounded-full animate-pulse"></div>
-              <span className="hidden sm:inline">ANNOUNCEMENTS</span>
-              <span className="sm:hidden">NEWS</span>
+              <span className="hidden sm:inline">
+                {language === "en" ? "ANNOUNCEMENTS" : "घोषणा"}
+              </span>
+              <span className="sm:hidden">
+                {language === "en" ? "NEWS" : "बातम्या"}
+              </span>
             </span>
           </div>
 
           <div className="flex-1 overflow-hidden relative">
-            <div className="flex flex-col gap-0.5 sm:gap-1">
-              <div
-                className="whitespace-nowrap text-xs sm:text-sm md:text-base font-medium transition-all duration-500 hover:text-accent cursor-pointer"
-                style={{
-                  animationName: "marquee",
-                  animationDuration: isMobile ? "45s" : isPaused ? "0s" : "60s",
-                  animationTimingFunction: "linear",
-                  animationIterationCount: "infinite",
-                  animationPlayState: isPaused && !isMobile ? "paused" : "running",
-                }}
-                {...(!isMobile && {
-                  onClick: handlePauseToggle,
-                  role: "button",
-                  tabIndex: 0,
-                  onKeyDown: (e) => handleKeyDown(e, handlePauseToggle),
-                })}
-                aria-label={`Announcement: ${announcements[currentIndex]}. ${!isMobile ? `Click to ${isPaused ? "resume" : "pause"}` : "Continuously scrolling"}`}
-              >
-                {announcements[currentIndex]}
-              </div>
-
-              <div
-                className="whitespace-nowrap text-xs sm:text-sm md:text-base font-medium transition-all duration-500 hover:text-accent cursor-pointer"
-                style={{
-                  animationName: "marquee",
-                  animationDuration: isMobile ? "45s" : isPaused ? "0s" : "60s",
-                  animationTimingFunction: "linear",
-                  animationIterationCount: "infinite",
-                  animationPlayState: isPaused && !isMobile ? "paused" : "running",
-                }}
-                {...(!isMobile && {
-                  onClick: handlePauseToggle,
-                  role: "button",
-                  tabIndex: 0,
-                  onKeyDown: (e) => handleKeyDown(e, handlePauseToggle),
-                })}
-                aria-label={`Announcement: ${announcements[currentIndex]}. ${!isMobile ? `Click to ${isPaused ? "resume" : "pause"}` : "Continuously scrolling"}`}
-              >
-                {announcements[currentIndex]}
-              </div>
+            <div
+              className="whitespace-nowrap text-xs sm:text-sm md:text-base font-medium transition-all duration-500 hover:text-accent cursor-pointer"
+              style={{
+                animationName: "marquee",
+                animationDuration: isMobile ? "45s" : isPaused ? "0s" : "60s",
+                animationTimingFunction: "linear",
+                animationIterationCount: "infinite",
+                animationPlayState: isPaused && !isMobile ? "paused" : "running",
+              }}
+              {...(!isMobile && {
+                onClick: handlePauseToggle,
+                role: "button",
+                tabIndex: 0,
+                onKeyDown: (e) => handleKeyDown(e, handlePauseToggle),
+              })}
+              aria-label={`${language === "en" ? "Announcement" : "घोषणा"}: ${currentAnnouncement}. ${!isMobile ? `${language === "en" ? `Click to ${isPaused ? "resume" : "pause"}` : `${isPaused ? "सुरू करण्यासाठी" : "थांबवण्यासाठी"} क्लिक करा`}` : language === "en" ? "Continuously scrolling" : "सतत स्क्रोल होत आहे"}`}
+            >
+              {currentAnnouncement}
             </div>
 
             <div className="absolute left-0 top-0 bottom-0 w-4 sm:w-8 bg-gradient-to-r from-background to-transparent pointer-events-none"></div>

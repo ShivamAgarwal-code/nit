@@ -2,11 +2,13 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Card, CardContent } from "@/components/ui/card"
 import { Skeleton } from "@/components/ui/skeleton"
+import { useState } from "react"
 
 export default function NewsLoading() {
+  const [language, setLanguage] = useState<"en" | "mr">("en")
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      <Header language={language} setLanguage={setLanguage}/>
 
       <main className="container mx-auto px-4 py-8">
         {/* Page Title Skeleton */}
@@ -52,8 +54,6 @@ export default function NewsLoading() {
           <Skeleton className="h-10 w-20" />
         </div>
       </main>
-
-      <Footer />
     </div>
   )
 }

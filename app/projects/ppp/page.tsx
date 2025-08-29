@@ -9,6 +9,7 @@ import { useState } from "react"
 
 export default function PPPProjectsPage() {
   const [searchTerm, setSearchTerm] = useState("")
+  const [language, setLanguage] = useState<"en" | "mr">("en")
 
   const pppProjects = [
     {
@@ -149,7 +150,7 @@ export default function PPPProjectsPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      <Header language={language} setLanguage={setLanguage}/>
 
       <main className="container mx-auto px-4 py-6 sm:py-8">
         <div className="mb-6 sm:mb-8">
@@ -202,8 +203,6 @@ export default function PPPProjectsPage() {
           </div>
         )}
       </main>
-
-      <Footer />
     </div>
   )
 }

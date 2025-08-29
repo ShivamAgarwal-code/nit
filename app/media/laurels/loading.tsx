@@ -1,10 +1,12 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
+import { useState } from "react"
 
 export default function LaurelsLoading() {
+  const [language, setLanguage] = useState<"en" | "mr">("en")
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      <Header language={language} setLanguage={setLanguage}/>
 
       <main className="container mx-auto px-4 py-8">
         {/* Page Title Skeleton */}
@@ -44,8 +46,6 @@ export default function LaurelsLoading() {
           </div>
         </div>
       </main>
-
-      <Footer />
     </div>
   )
 }

@@ -1,7 +1,7 @@
 import type React from "react"
 import type { Metadata } from "next"
 import "./globals.css"
-import Footer from "@/components/footer"
+import { LanguageProvider } from "@/components/language-provider"
 
 export const metadata: Metadata = {
   title: "Nagpur Improvement Trust - Government of Maharashtra",
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_IN",
   },
-    generator: 'v0.app'
+  generator: 'v0.app'
 }
 
 export default function RootLayout({
@@ -43,8 +43,9 @@ export default function RootLayout({
             Skip to main content
           </a>
         </div>
-        {children}
-        <Footer />
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   )

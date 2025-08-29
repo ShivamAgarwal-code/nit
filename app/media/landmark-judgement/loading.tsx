@@ -1,10 +1,12 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
+import { useState } from "react"
 
 export default function Loading() {
+  const [language, setLanguage] = useState<"en" | "mr">("en")
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      <Header language={language} setLanguage={setLanguage}/>
 
       <main className="container mx-auto px-4 py-12">
         <div className="max-w-4xl mx-auto">
@@ -23,8 +25,6 @@ export default function Loading() {
           </div>
         </div>
       </main>
-
-      <Footer />
     </div>
   )
 }

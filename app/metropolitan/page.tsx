@@ -2,8 +2,10 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import Image from "next/image"
 import Link from "next/link"
+import { useState } from "react"
 
 export default function MetropolitanPage() {
+  const [language, setLanguage] = useState<"en" | "mr">("en")
   const documentLinks = [
     { title: "MMRDA Ordinance 2019", isNew: true, href: "/documents/mmrda-ordinance-2019.pdf" },
     {
@@ -159,7 +161,7 @@ export default function MetropolitanPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      <Header language={language} setLanguage={setLanguage}/>
 
       <main className="container mx-auto px-4 py-8">
         {/* Page Title */}
@@ -302,8 +304,6 @@ export default function MetropolitanPage() {
           </div>
         </section>
       </main>
-
-      <Footer />
     </div>
   )
 }

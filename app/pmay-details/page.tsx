@@ -11,6 +11,7 @@ import { Card, CardContent } from "@/components/ui/card"
 
 export default function PMAYDetailsPage() {
   const [applicationNo, setApplicationNo] = useState("")
+  const [language, setLanguage] = useState<"en" | "mr">("en")
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -24,7 +25,7 @@ export default function PMAYDetailsPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      <Header language={language} setLanguage={setLanguage}/>
 
       <main className="container mx-auto px-4 py-12" id="main-content">
         <div className="max-w-4xl mx-auto">
@@ -85,8 +86,6 @@ export default function PMAYDetailsPage() {
           </Card>
         </div>
       </main>
-
-      <Footer />
     </div>
   )
 }

@@ -5,8 +5,10 @@ import { Footer } from "@/components/footer"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import { useState } from "react"
 
 export default function CompletedProjectsPage() {
+  const [language, setLanguage] = useState<"en" | "mr">("en")
   const completedProjects = [
     {
       id: "swimming-pool",
@@ -66,7 +68,7 @@ export default function CompletedProjectsPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      <Header language={language} setLanguage={setLanguage}/>
 
       <main className="container mx-auto px-4 py-6 sm:py-8">
         <h1 className="text-2xl sm:text-3xl font-bold text-orange-600 text-center mb-6 sm:mb-8">Completed Projects</h1>
@@ -112,8 +114,6 @@ export default function CompletedProjectsPage() {
           ))}
         </div>
       </main>
-
-      <Footer />
     </div>
   )
 }

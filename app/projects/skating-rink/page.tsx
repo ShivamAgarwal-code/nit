@@ -1,11 +1,13 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Card, CardContent } from "@/components/ui/card"
+import { useState } from "react"
 
 export default function SkatingRinkPage() {
+  const [language, setLanguage] = useState<"en" | "mr">("en")
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      <Header language={language} setLanguage={setLanguage}/>
 
       <main className="container mx-auto px-4 py-8">
         <div className="mb-8">
@@ -76,8 +78,6 @@ export default function SkatingRinkPage() {
           </Card>
         </div>
       </main>
-
-      <Footer />
     </div>
   )
 }

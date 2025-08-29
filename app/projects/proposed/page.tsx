@@ -2,8 +2,10 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Card } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { useState } from "react"
 
 export default function ProposedProjectsPage() {
+  const [language, setLanguage] = useState<"en" | "mr">("en")
   const proposedProjects = [
     {
       id: 1,
@@ -85,7 +87,7 @@ export default function ProposedProjectsPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      <Header language={language} setLanguage={setLanguage}/>
 
       <main className="container mx-auto px-4 py-8">
         <div className="mb-8">
@@ -201,8 +203,6 @@ export default function ProposedProjectsPage() {
           </TabsContent>
         </Tabs>
       </main>
-
-      <Footer />
     </div>
   )
 }

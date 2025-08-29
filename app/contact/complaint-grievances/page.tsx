@@ -13,6 +13,7 @@ import { useState } from "react"
 import { AlertTriangle, Send, RotateCcw, Clock, Phone } from "lucide-react"
 
 export default function ComplaintGrievancesPage() {
+  const [language, setLanguage] = useState<"en" | "mr">("en")
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -59,7 +60,7 @@ export default function ComplaintGrievancesPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      <Header language={language} setLanguage={setLanguage}/>
 
       <main className="container mx-auto px-4 py-8">
         <div className="max-w-6xl mx-auto">
@@ -315,8 +316,6 @@ export default function ComplaintGrievancesPage() {
           </div>
         </div>
       </main>
-
-      <Footer />
     </div>
   )
 }

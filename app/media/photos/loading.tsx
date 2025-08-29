@@ -1,11 +1,13 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Skeleton } from "@/components/ui/skeleton"
+import { useState } from "react"
 
 export default function PhotosLoading() {
+  const [language, setLanguage] = useState<"en" | "mr">("en")
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      <Header language={language} setLanguage={setLanguage}/>
 
       <main className="container mx-auto px-4 py-8">
         {/* Page Header Skeleton */}
@@ -36,8 +38,6 @@ export default function PhotosLoading() {
           <Skeleton className="h-8 w-20" />
         </div>
       </main>
-
-      <Footer />
     </div>
   )
 }

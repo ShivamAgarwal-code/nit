@@ -10,6 +10,7 @@ import { useState } from "react"
 
 export default function WorkInProgressPage() {
   const [searchTerm, setSearchTerm] = useState("")
+  const [language, setLanguage] = useState<"en" | "mr">("en")
 
   const wipProjects = [
     {
@@ -87,7 +88,7 @@ export default function WorkInProgressPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      <Header language={language} setLanguage={setLanguage}/>
 
       <main className="container mx-auto px-4 py-6 sm:py-8">
         <div className="mb-6 sm:mb-8">
@@ -174,8 +175,6 @@ export default function WorkInProgressPage() {
           </div>
         )}
       </main>
-
-      <Footer />
     </div>
   )
 }

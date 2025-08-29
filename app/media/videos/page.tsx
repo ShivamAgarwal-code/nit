@@ -113,6 +113,7 @@ const videos: Video[] = [
 
 export default function VideosPage() {
   const [searchTerm, setSearchTerm] = useState("")
+  const [language, setLanguage] = useState<"en" | "mr">("en")
   const [currentPage, setCurrentPage] = useState(1)
   const [selectedVideo, setSelectedVideo] = useState<Video | null>(null)
   const videosPerPage = 8
@@ -138,7 +139,7 @@ export default function VideosPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      <Header language={language} setLanguage={setLanguage}/>
 
       <main className="container mx-auto px-4 py-8">
         {/* Page Header */}
@@ -298,8 +299,6 @@ export default function VideosPage() {
           </div>
         </div>
       )}
-
-      <Footer />
     </div>
   )
 }

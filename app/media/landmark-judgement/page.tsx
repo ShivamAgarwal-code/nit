@@ -1,8 +1,10 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import Link from "next/link"
+import { useState } from "react"
 
 export default function LandmarkJudgmentPage() {
+  const [language, setLanguage] = useState<"en" | "mr">("en")
   const judgments = [
     {
       id: 1,
@@ -29,7 +31,7 @@ export default function LandmarkJudgmentPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      <Header language={language} setLanguage={setLanguage}/>
 
       <main className="container mx-auto px-4 py-12">
         <div className="max-w-4xl mx-auto">
@@ -64,8 +66,6 @@ export default function LandmarkJudgmentPage() {
           </div>
         </div>
       </main>
-
-      <Footer />
     </div>
   )
 }

@@ -20,16 +20,32 @@ import {
 
 interface Scheme {
   id: string
-  title: string
-  description: string
-  beneficiaries: string
+  title: {
+    en: string
+    mr: string
+  }
+  description: {
+    en: string
+    mr: string
+  }
+  beneficiaries: {
+    en: string
+    mr: string
+  }
   icon: React.ReactNode
-  category: string
+  category: {
+    en: string
+    mr: string
+  }
   color: string
   bgColor: string
 }
 
-export function PromotionalBanner() {
+interface PromotionalBannerProps {
+  language: "en" | "mr"
+}
+
+export function PromotionalBanner({ language }: PromotionalBannerProps) {
   const [isVisible, setIsVisible] = useState(true)
   const [currentSchemeIndex, setCurrentSchemeIndex] = useState(0)
   const [isAnimating, setIsAnimating] = useState(false)
@@ -37,51 +53,111 @@ export function PromotionalBanner() {
   const schemes: Scheme[] = [
     {
       id: "pmay",
-      title: "Pradhan Mantri Awas Yojana 2.0",
-      description: "Affordable housing scheme providing financial assistance for home construction and purchase",
-      beneficiaries: "50,000+ families benefited",
+      title: {
+        en: "Pradhan Mantri Awas Yojana 2.0",
+        mr: "प्रधानमंत्री आवास योजना 2.0"
+      },
+      description: {
+        en: "Affordable housing scheme providing financial assistance for home construction and purchase",
+        mr: "घर बांधकाम आणि खरेदीसाठी आर्थिक सहाय्य प्रदान करणारी परवडणारी गृहनिर्माण योजना"
+      },
+      beneficiaries: {
+        en: "50,000+ families benefited",
+        mr: "50,000+ कुटुंबांना लाभ"
+      },
       icon: <Home className="h-5 w-5 sm:h-6 sm:w-6" />,
-      category: "Housing",
+      category: {
+        en: "Housing",
+        mr: "गृहनिर्माण"
+      },
       color: "text-blue-600",
       bgColor: "bg-blue-50 border-blue-200",
     },
     {
       id: "skill-development",
-      title: "Skill Development Initiative",
-      description: "Free vocational training programs for youth to enhance employability and entrepreneurship",
-      beneficiaries: "25,000+ trained",
+      title: {
+        en: "Skill Development Initiative",
+        mr: "कौशल्य विकास उपक्रम"
+      },
+      description: {
+        en: "Free vocational training programs for youth to enhance employability and entrepreneurship",
+        mr: "तरुणांसाठी रोजगारक्षमता आणि उद्योजकता वाढविण्यासाठी मोफत व्यावसायिक प्रशिक्षण कार्यक्रम"
+      },
+      beneficiaries: {
+        en: "25,000+ trained",
+        mr: "25,000+ प्रशिक्षित"
+      },
       icon: <GraduationCap className="h-5 w-5 sm:h-6 sm:w-6" />,
-      category: "Education",
+      category: {
+        en: "Education",
+        mr: "शिक्षण"
+      },
       color: "text-green-600",
       bgColor: "bg-green-50 border-green-200",
     },
     {
       id: "employment",
-      title: "Employment Generation Scheme",
-      description: "Creating job opportunities through infrastructure projects and local business support",
-      beneficiaries: "15,000+ jobs created",
+      title: {
+        en: "Employment Generation Scheme",
+        mr: "रोजगार निर्मिती योजना"
+      },
+      description: {
+        en: "Creating job opportunities through infrastructure projects and local business support",
+        mr: "पायाभूत सुविधा प्रकल्प आणि स्थानिक व्यवसाय समर्थनाद्वारे नोकरीच्या संधी निर्माण करणे"
+      },
+      beneficiaries: {
+        en: "15,000+ jobs created",
+        mr: "15,000+ नोकऱ्या निर्माण"
+      },
       icon: <Briefcase className="h-5 w-5 sm:h-6 sm:w-6" />,
-      category: "Employment",
+      category: {
+        en: "Employment",
+        mr: "रोजगार"
+      },
       color: "text-purple-600",
       bgColor: "bg-purple-50 border-purple-200",
     },
     {
       id: "healthcare",
-      title: "Universal Healthcare Access",
-      description: "Comprehensive healthcare services and medical insurance coverage for all citizens",
-      beneficiaries: "2 lakh+ covered",
+      title: {
+        en: "Universal Healthcare Access",
+        mr: "सर्वव्यापी आरोग्य सेवा प्रवेश"
+      },
+      description: {
+        en: "Comprehensive healthcare services and medical insurance coverage for all citizens",
+        mr: "सर्व नागरिकांसाठी सर्वसमावेशक आरोग्य सेवा आणि वैद्यकीय विमा संरक्षण"
+      },
+      beneficiaries: {
+        en: "2 lakh+ covered",
+        mr: "2 लाख+ संरक्षित"
+      },
       icon: <Heart className="h-5 w-5 sm:h-6 sm:w-6" />,
-      category: "Healthcare",
+      category: {
+        en: "Healthcare",
+        mr: "आरोग्यसेवा"
+      },
       color: "text-red-600",
       bgColor: "bg-red-50 border-red-200",
     },
     {
       id: "women-empowerment",
-      title: "Women Empowerment Program",
-      description: "Financial assistance and skill training for women entrepreneurs and self-help groups",
-      beneficiaries: "30,000+ women empowered",
+      title: {
+        en: "Women Empowerment Program",
+        mr: "महिला सशक्तिकरण कार्यक्रम"
+      },
+      description: {
+        en: "Financial assistance and skill training for women entrepreneurs and self-help groups",
+        mr: "महिला उद्योजक आणि स्वयंसहायता गटांसाठी आर्थिक सहाय्य आणि कौशल्य प्रशिक्षण"
+      },
+      beneficiaries: {
+        en: "30,000+ women empowered",
+        mr: "30,000+ महिला सशक्त"
+      },
       icon: <Users className="h-5 w-5 sm:h-6 sm:w-6" />,
-      category: "Social Welfare",
+      category: {
+        en: "Social Welfare",
+        mr: "समाज कल्याण"
+      },
       color: "text-accent",
       bgColor: "bg-accent/5 border-accent/20",
     },
@@ -143,7 +219,7 @@ export function PromotionalBanner() {
         onClick={() => setIsVisible(false)}
         onKeyDown={(e) => handleKeyDown(e, () => setIsVisible(false))}
         className="absolute top-1 right-1 sm:top-2 sm:right-2 z-20 h-7 w-7 sm:h-8 sm:w-8 p-0 text-muted-foreground hover:text-destructive hover:bg-destructive/10 rounded-full transition-all duration-200 hover:scale-110 hover:shadow-md"
-        aria-label="Close promotional banner"
+        aria-label={language === "en" ? "Close promotional banner" : "प्रोमो बॅनर बंद करा"}
       >
         <X className="h-3 w-3 sm:h-4 sm:w-4" />
       </Button>
@@ -154,7 +230,7 @@ export function PromotionalBanner() {
         onClick={prevScheme}
         onKeyDown={(e) => handleKeyDown(e, prevScheme)}
         className="absolute left-1 sm:left-2 top-1/2 -translate-y-1/2 z-10 h-7 w-7 sm:h-8 sm:w-8 md:h-10 md:w-10 p-0 text-muted-foreground hover:text-accent hover:bg-accent/10 rounded-full transition-all duration-200 hover:scale-110 hover:shadow-md"
-        aria-label="Previous scheme"
+        aria-label={language === "en" ? "Previous scheme" : "मागील योजना"}
       >
         <ChevronLeft className="h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5" />
       </Button>
@@ -165,7 +241,7 @@ export function PromotionalBanner() {
         onClick={nextScheme}
         onKeyDown={(e) => handleKeyDown(e, nextScheme)}
         className="absolute right-9 sm:right-11 md:right-12 top-1/2 -translate-y-1/2 z-10 h-7 w-7 sm:h-8 sm:w-8 md:h-10 md:w-10 p-0 text-muted-foreground hover:text-accent hover:bg-accent/10 rounded-full transition-all duration-200 hover:scale-110 hover:shadow-md"
-        aria-label="Next scheme"
+        aria-label={language === "en" ? "Next scheme" : "पुढील योजना"}
       >
         <ChevronRight className="h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5" />
       </Button>
@@ -189,20 +265,22 @@ export function PromotionalBanner() {
                   variant="secondary"
                   className={`${currentScheme.color.replace("text-", "bg-").replace("-600", "-500")} text-white text-xs font-semibold px-1.5 py-0.5 rounded-full border-0 shadow-sm hover:shadow-md transition-shadow duration-200 w-fit`}
                 >
-                  {currentScheme.category}
+                  {currentScheme.category[language]}
                 </Badge>
                 <div className="flex items-center gap-1">
                   <div className="w-1 h-1 bg-green-500 rounded-full animate-pulse"></div>
-                  <span className={`text-xs font-semibold ${currentScheme.color}`}>{currentScheme.beneficiaries}</span>
+                  <span className={`text-xs font-semibold ${currentScheme.color}`}>
+                    {currentScheme.beneficiaries[language]}
+                  </span>
                 </div>
               </div>
 
               <h3 className="font-sans font-bold text-foreground text-xs sm:text-sm md:text-base mb-0.5 leading-tight hover:text-accent transition-colors duration-200 cursor-pointer line-clamp-1 sm:line-clamp-none">
-                {currentScheme.title}
+                {currentScheme.title[language]}
               </h3>
 
               <p className="text-muted-foreground text-xs leading-relaxed line-clamp-1 sm:line-clamp-1 md:line-clamp-none hidden sm:block">
-                {currentScheme.description}
+                {currentScheme.description[language]}
               </p>
             </div>
 
@@ -211,7 +289,7 @@ export function PromotionalBanner() {
               size="sm"
               className={`hidden md:flex items-center gap-1 ${currentScheme.color.replace("text-", "border-").replace("-600", "-300")} ${currentScheme.color} hover:bg-accent hover:text-accent-foreground hover:border-accent transition-all duration-200 hover:scale-105 hover:shadow-md text-xs px-2 py-1`}
             >
-              Learn More
+              {language === "en" ? "Learn More" : "अधिक जाणा"}
               <ExternalLink className="h-3 w-3" />
             </Button>
           </div>

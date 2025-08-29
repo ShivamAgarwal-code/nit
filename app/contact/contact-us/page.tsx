@@ -5,8 +5,10 @@ import { Footer } from "@/components/footer"
 import { useState } from "react"
 import { Search, Phone, Mail, MapPin } from "lucide-react"
 
+
 export default function ContactUsPage() {
   const [searchTerm, setSearchTerm] = useState("")
+  const [language, setLanguage] = useState<"en" | "mr">("en")
 
   const employees = [
     { designation: "Chairman", name: "Shri. Sanjay Meena", telephone: "2533202 Fax : 2531079", mobile: "" },
@@ -156,7 +158,7 @@ export default function ContactUsPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      <Header language={language} setLanguage={setLanguage}/>
 
       <main className="container mx-auto px-4 py-6 sm:py-12">
         <div className="max-w-6xl mx-auto">
@@ -359,8 +361,6 @@ export default function ContactUsPage() {
           </div>
         </div>
       </main>
-
-      <Footer />
     </div>
   )
 }

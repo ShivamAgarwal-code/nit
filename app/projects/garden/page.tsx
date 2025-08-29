@@ -1,8 +1,10 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { useState } from "react"
 
 export default function GardenPage() {
+  const [language, setLanguage] = useState<"en" | "mr">("en")
   const majorGardens = [
     { name: "Rajiv Gandhi Udyan, Trimurti nagar", area: "8.00" },
     { name: "Maharma Phule Udyan, Suyognagar", area: "8.50" },
@@ -34,7 +36,7 @@ export default function GardenPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      <Header language={language} setLanguage={setLanguage}/>
 
       <main className="container mx-auto px-4 py-8">
         <div className="mb-8">
@@ -139,8 +141,6 @@ export default function GardenPage() {
           </Card>
         </div>
       </main>
-
-      <Footer />
     </div>
   )
 }

@@ -9,6 +9,7 @@ import { Search, Phone, Mail, MapPin } from "lucide-react"
 
 export default function DirectoryPage() {
   const [searchTerm, setSearchTerm] = useState("")
+  const [language, setLanguage] = useState<"en" | "mr">("en")
 
   const directoryData = [
     {
@@ -87,7 +88,7 @@ export default function DirectoryPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      <Header language={language} setLanguage={setLanguage}/>
 
       <main className="container mx-auto px-4 py-8">
         <div className="max-w-6xl mx-auto">
@@ -149,8 +150,6 @@ export default function DirectoryPage() {
           )}
         </div>
       </main>
-
-      <Footer />
     </div>
   )
 }

@@ -278,7 +278,7 @@ export default function DownloadsPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      <Header language={language} setLanguage={setLanguage}/>
 
       <main className="container mx-auto px-4 py-8">
         {/* Page Header */}
@@ -357,8 +357,6 @@ export default function DownloadsPage() {
           </div>
         )}
       </main>
-
-      <Footer />
     </div>
   )
 }

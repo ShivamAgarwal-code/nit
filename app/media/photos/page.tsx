@@ -190,6 +190,7 @@ const galleryPhotos = [
 export default function PhotosPage() {
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedPhoto, setSelectedPhoto] = useState<(typeof galleryPhotos)[0] | null>(null)
+  const [language, setLanguage] = useState<"en" | "mr">("en")
   const [currentPage, setCurrentPage] = useState(1)
   const photosPerPage = 25
 
@@ -231,7 +232,7 @@ export default function PhotosPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      <Header language={language} setLanguage={setLanguage}/>
 
       <main className="container mx-auto px-4 py-8">
         {/* Page Header */}
@@ -380,8 +381,6 @@ export default function PhotosPage() {
           </div>
         </div>
       )}
-
-      <Footer />
     </div>
   )
 }

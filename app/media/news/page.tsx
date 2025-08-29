@@ -82,6 +82,7 @@ const ITEMS_PER_PAGE = 5
 export default function NewsPage() {
   const [searchTerm, setSearchTerm] = useState("")
   const [currentPage, setCurrentPage] = useState(1)
+  const [language, setLanguage] = useState<"en" | "mr">("en")
 
   // Filter news based on search term
   const filteredNews = useMemo(() => {
@@ -115,7 +116,7 @@ export default function NewsPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      <Header language={language} setLanguage={setLanguage}/>
 
       <main className="container mx-auto px-4 py-8">
         {/* Page Title */}
@@ -226,8 +227,6 @@ export default function NewsPage() {
           {searchTerm && ` for "${searchTerm}"`}
         </div>
       </main>
-
-      <Footer />
     </div>
   )
 }
